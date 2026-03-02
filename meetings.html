@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>会議の進行状況 | SOJA.FD 救急情報サイト</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: { DEFAULT: '#1e3a5f', dark: '#152b48', light: '#2a4d7c' },
+            fire: { DEFAULT: '#c0392b', dark: '#a93226', light: '#e74c3c' },
+          },
+          fontFamily: { sans: ['Noto Sans JP', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans">
+
+  <!-- ヘッダー -->
+  <header class="bg-navy text-white shadow-lg">
+    <div class="max-w-6xl mx-auto px-4 py-4">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <div class="bg-fire rounded-lg p-2.5 flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C8.5 6 6 9 6 13a6 6 0 0012 0c0-4-2.5-7-6-11zm0 16a4 4 0 01-4-4c0-2.5 1.5-5 4-8 2.5 3 4 5.5 4 8a4 4 0 01-4 4z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-xs text-blue-300 tracking-widest uppercase">Soja Fire Department</p>
+            <a href="index.html" class="text-xl font-bold leading-tight hover:text-blue-200 transition-colors">救急情報サイト</a>
+          </div>
+        </div>
+        <nav class="flex flex-wrap gap-1">
+          <a href="index.html" class="nav-link">ホーム</a>
+          <a href="regulations.html" class="nav-link">本部内規</a>
+          <a href="https://www.pref.okayama.jp/page/835819.html" target="_blank" rel="noopener" class="nav-link">岡山県プロトコール ↗</a>
+          <a href="meetings.html" class="nav-link active">会議の進行状況</a>
+          <a href="https://ryoji-ai.github.io/ems-ojt-system/" target="_blank" rel="noopener" class="nav-link-ojt">
+            救急OJT教育システム ↗
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- ページタイトル -->
+  <div class="bg-gradient-to-br from-navy to-navy-dark text-white py-8">
+    <div class="max-w-6xl mx-auto px-4">
+      <p class="text-blue-300 text-sm mb-1">SOJA.FD 救急情報サイト</p>
+      <h2 class="text-2xl md:text-3xl font-black">🗓 会議の進行状況</h2>
+      <p class="text-blue-300 mt-1">各種会議・委員会の開催状況および進行状況</p>
+    </div>
+  </div>
+
+  <!-- メインコンテンツ -->
+  <main class="max-w-6xl mx-auto px-4 py-8">
+
+    <!-- 凡例 -->
+    <div class="bg-white rounded-xl shadow p-4 mb-6">
+      <p class="text-sm text-gray-500 font-medium mb-2">ステータス凡例</p>
+      <div class="flex flex-wrap gap-3">
+        <div class="flex items-center gap-1.5"><span class="status-pending">準備中</span><span class="text-gray-500 text-xs">開催に向けて準備中</span></div>
+        <div class="flex items-center gap-1.5"><span class="status-scheduled">開催予定</span><span class="text-gray-500 text-xs">日程確定・開催待ち</span></div>
+        <div class="flex items-center gap-1.5"><span class="status-review">審議中</span><span class="text-gray-500 text-xs">議題を審議・検討中</span></div>
+        <div class="flex items-center gap-1.5"><span class="status-done">開催済</span><span class="text-gray-500 text-xs">開催済・議事録整備中</span></div>
+      </div>
+    </div>
+
+    <!-- 会議一覧（JSONから動的生成） -->
+    <div id="meetings-list" class="space-y-4">
+      <p class="text-gray-400 text-sm py-4 text-center">読み込み中...</p>
+    </div>
+
+    <!-- 備考 -->
+    <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mt-6 flex items-start gap-3">
+      <span class="text-blue-500 text-lg mt-0.5">ℹ️</span>
+      <p class="text-blue-700 text-sm">会議の開催・変更については、別途お知らせします。資料・議事録については開催後に順次掲載します。</p>
+    </div>
+
+  </main>
+
+  <!-- フッター -->
+  <footer class="bg-navy-dark text-blue-300 mt-10 py-8">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <p class="font-bold text-white text-lg">SOJA.FD 救急情報サイト</p>
+      <p class="text-sm mt-1">総社消防本部 救急担当</p>
+      <p class="text-xs mt-3">最終更新: 2026年3月2日</p>
+    </div>
+  </footer>
+
+
+<script>
+function escHtml(s) {
+  return String(s ?? '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+const STATUS = {
+  '準備中':'status-pending','開催予定':'status-scheduled',
+  '審議中':'status-review','開催済':'status-done'
+};
+
+(async function() {
+  try {
+    const res = await fetch('./data/meetings.json');
+    const { items } = await res.json();
+    const el = document.getElementById('meetings-list');
+    if (!el || !items?.length) return;
+
+    el.innerHTML = items.map(m => {
+      const docHtml = m.document
+        ? `<a href="${escHtml(m.document)}" target="_blank" rel="noopener"
+               class="text-navy text-sm hover:underline">📄 ダウンロード</a>`
+        : `<span class="text-gray-400 text-sm">準備中</span>`;
+      return `
+        <article class="bg-white rounded-xl shadow p-6">
+          <div class="flex-1">
+            <div class="flex items-center gap-3 mb-2">
+              <span class="${STATUS[m.status] ?? 'status-pending'}">${escHtml(m.status)}</span>
+              <h3 class="font-bold text-gray-800 text-lg">${escHtml(m.name)}</h3>
+            </div>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-3 text-sm mb-3">
+              <div><p class="text-gray-400 text-xs">開催日</p><p class="text-gray-700 font-medium">${escHtml(m.date)}</p></div>
+              <div><p class="text-gray-400 text-xs">場所</p><p class="text-gray-700 font-medium">${escHtml(m.place || '—')}</p></div>
+              <div><p class="text-gray-400 text-xs">担当</p><p class="text-gray-700 font-medium">${escHtml(m.assigned)}</p></div>
+              <div><p class="text-gray-400 text-xs">資料・議事録</p>${docHtml}</div>
+            </div>
+            ${m.notes ? `<p class="text-gray-500 text-sm">${escHtml(m.notes)}</p>` : ''}
+          </div>
+        </article>`;
+    }).join('');
+  } catch {
+    const el = document.getElementById('meetings-list');
+    if (el) el.innerHTML = '<p class="text-gray-400 text-sm py-4 text-center">会議情報を読み込めませんでした。</p>';
+  }
+})();
+</script>
+</body>
+</html>

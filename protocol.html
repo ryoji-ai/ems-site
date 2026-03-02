@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>岡山県プロトコール | SOJA.FD 救急情報サイト</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: { DEFAULT: '#1e3a5f', dark: '#152b48', light: '#2a4d7c' },
+            fire: { DEFAULT: '#c0392b', dark: '#a93226', light: '#e74c3c' },
+          },
+          fontFamily: { sans: ['Noto Sans JP', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans">
+
+  <!-- ヘッダー -->
+  <header class="bg-navy text-white shadow-lg">
+    <div class="max-w-6xl mx-auto px-4 py-4">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <div class="bg-fire rounded-lg p-2.5 flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C8.5 6 6 9 6 13a6 6 0 0012 0c0-4-2.5-7-6-11zm0 16a4 4 0 01-4-4c0-2.5 1.5-5 4-8 2.5 3 4 5.5 4 8a4 4 0 01-4 4z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-xs text-blue-300 tracking-widest uppercase">Soja Fire Department</p>
+            <a href="index.html" class="text-xl font-bold leading-tight hover:text-blue-200 transition-colors">救急情報サイト</a>
+          </div>
+        </div>
+        <nav class="flex flex-wrap gap-1">
+          <a href="index.html" class="nav-link">ホーム</a>
+          <a href="regulations.html" class="nav-link">本部内規</a>
+          <a href="https://www.pref.okayama.jp/page/835819.html" target="_blank" rel="noopener" class="nav-link">岡山県プロトコール ↗</a>
+          <a href="meetings.html" class="nav-link">会議の進行状況</a>
+          <a href="https://ryoji-ai.github.io/ems-ojt-system/" target="_blank" rel="noopener" class="nav-link-ojt">
+            救急OJT教育システム ↗
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- ページタイトル -->
+  <div class="bg-gradient-to-br from-navy to-navy-dark text-white py-8">
+    <div class="max-w-6xl mx-auto px-4">
+      <p class="text-blue-300 text-sm mb-1">SOJA.FD 救急情報サイト</p>
+      <h2 class="text-2xl md:text-3xl font-black">🏥 岡山県プロトコール</h2>
+      <p class="text-blue-300 mt-1">岡山県救急業務プロトコール 周知・改定情報</p>
+    </div>
+  </div>
+
+  <!-- メインコンテンツ -->
+  <main class="max-w-6xl mx-auto px-4 py-8">
+
+    <!-- 岡山県プロトコール 公式リンク -->
+    <a href="https://www.pref.okayama.jp/page/835819.html" target="_blank" rel="noopener"
+       class="flex items-center gap-5 bg-navy hover:bg-navy-light text-white rounded-xl p-5 mb-4 shadow-lg transition-colors group">
+      <div class="bg-white/10 rounded-lg p-3 flex-shrink-0">
+        <svg xmlns="http://www.w3.org/2000/svg" class="w-8 h-8 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="1.8">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/>
+        </svg>
+      </div>
+      <div class="flex-1 min-w-0">
+        <p class="text-xs text-blue-300 mb-0.5">岡山県ホームページ（消防保安課）</p>
+        <p class="font-bold text-lg leading-tight">救急搬送体制連絡協議会</p>
+        <p class="text-blue-200 text-sm mt-0.5">プロトコールの最新情報・資料はこちら ↗</p>
+      </div>
+      <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5 text-blue-300 flex-shrink-0 group-hover:text-white transition-colors" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"/>
+      </svg>
+    </a>
+
+    <!-- 重要通知 -->
+    <div class="bg-red-50 border-l-4 border-fire rounded-r-xl p-4 mb-6 flex items-start gap-3">
+      <span class="text-fire text-xl mt-0.5">⚠️</span>
+      <div>
+        <p class="text-fire font-bold text-sm">プロトコール適用上の注意</p>
+        <p class="text-red-700 text-xs mt-0.5">特定行為の実施にあたっては、必ず最新版プロトコールを確認の上、MCプロトコールに従い実施してください。改定情報は本ページで随時お知らせします。</p>
+      </div>
+    </div>
+
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <!-- プロトコール一覧 -->
+      <section class="md:col-span-2 space-y-6">
+
+        <!-- 特定行為プロトコール -->
+        <div class="bg-white rounded-xl shadow overflow-hidden">
+          <div class="px-6 py-4 bg-navy text-white">
+            <h3 class="font-bold">特定行為プロトコール</h3>
+            <p class="text-blue-200 text-xs mt-0.5">救急救命士による特定行為の実施基準</p>
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>プロトコール名</th>
+                <th class="hidden md:table-cell">改定</th>
+                <th>周知状況</th>
+                <th>資料</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="font-medium text-gray-800">静脈路確保・輸液プロトコール</td>
+                <td class="hidden md:table-cell text-gray-500 text-xs">—</td>
+                <td><span class="status-done">周知済</span></td>
+                <td><span class="text-gray-400 text-xs">準備中</span></td>
+              </tr>
+              <tr>
+                <td class="font-medium text-gray-800">薬剤投与プロトコール（アドレナリン）</td>
+                <td class="hidden md:table-cell text-gray-500 text-xs">—</td>
+                <td><span class="status-done">周知済</span></td>
+                <td><span class="text-gray-400 text-xs">準備中</span></td>
+              </tr>
+              <tr>
+                <td class="font-medium text-gray-800">気管挿管プロトコール</td>
+                <td class="hidden md:table-cell text-gray-500 text-xs">—</td>
+                <td><span class="status-done">周知済</span></td>
+                <td><span class="text-gray-400 text-xs">準備中</span></td>
+              </tr>
+              <tr>
+                <td class="font-medium text-gray-800">血糖測定・ブドウ糖投与プロトコール</td>
+                <td class="hidden md:table-cell text-gray-500 text-xs">—</td>
+                <td><span class="status-done">周知済</span></td>
+                <td><span class="text-gray-400 text-xs">準備中</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- 一般救急処置プロトコール -->
+        <div class="bg-white rounded-xl shadow overflow-hidden">
+          <div class="px-6 py-4 bg-navy-light text-white">
+            <h3 class="font-bold">一般救急処置プロトコール</h3>
+            <p class="text-blue-200 text-xs mt-0.5">傷病別の標準的観察・処置手順</p>
+          </div>
+          <table class="data-table">
+            <thead>
+              <tr>
+                <th>プロトコール名</th>
+                <th class="hidden md:table-cell">改定</th>
+                <th>周知状況</th>
+                <th>資料</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td class="font-medium text-gray-800">心肺停止傷病者対応プロトコール</td>
+                <td class="hidden md:table-cell text-gray-500 text-xs">—</td>
+                <td><span class="status-done">周知済</span></td>
+                <td><span class="text-gray-400 text-xs">準備中</span></td>
+              </tr>
+              <tr>
+                <td class="font-medium text-gray-800">脳卒中疑い傷病者搬送プロトコール</td>
+                <td class="hidden md:table-cell text-gray-500 text-xs">—</td>
+                <td><span class="status-review">周知中</span></td>
+                <td><span class="text-gray-400 text-xs">準備中</span></td>
+              </tr>
+              <tr>
+                <td class="font-medium text-gray-800">急性冠症候群疑い傷病者プロトコール</td>
+                <td class="hidden md:table-cell text-gray-500 text-xs">—</td>
+                <td><span class="status-done">周知済</span></td>
+                <td><span class="text-gray-400 text-xs">準備中</span></td>
+              </tr>
+              <tr>
+                <td class="font-medium text-gray-800">小児救急対応プロトコール</td>
+                <td class="hidden md:table-cell text-gray-500 text-xs">—</td>
+                <td><span class="status-pending">準備中</span></td>
+                <td><span class="text-gray-400 text-xs">準備中</span></td>
+              </tr>
+              <tr>
+                <td class="font-medium text-gray-800">多数傷病者対応プロトコール</td>
+                <td class="hidden md:table-cell text-gray-500 text-xs">—</td>
+                <td><span class="status-done">周知済</span></td>
+                <td><span class="text-gray-400 text-xs">準備中</span></td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+      </section>
+
+      <!-- サイドバー -->
+      <aside class="space-y-4">
+        <!-- 周知状況の凡例 -->
+        <div class="bg-white rounded-xl p-5 shadow">
+          <h3 class="section-title mb-3">凡例</h3>
+          <div class="space-y-2">
+            <div class="flex items-center gap-2"><span class="status-done">周知済</span><span class="text-gray-600 text-sm">全員への周知完了</span></div>
+            <div class="flex items-center gap-2"><span class="status-review">周知中</span><span class="text-gray-600 text-sm">周知作業を実施中</span></div>
+            <div class="flex items-center gap-2"><span class="status-pending">準備中</span><span class="text-gray-600 text-sm">資料等を整備中</span></div>
+          </div>
+        </div>
+
+        <!-- 改定周知のお知らせ -->
+        <div class="bg-white rounded-xl p-5 shadow">
+          <h3 class="section-title mb-3">改定・周知情報</h3>
+          <div class="space-y-3">
+            <div class="text-sm">
+              <p class="text-gray-400 text-xs">2026年3月2日</p>
+              <p class="text-gray-700">サイト開設のため掲載準備中です。最新情報は随時更新します。</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- 参考リンク -->
+        <div class="bg-navy text-white rounded-xl p-5">
+          <h3 class="font-bold text-sm mb-3">関連リンク</h3>
+          <ul class="space-y-2">
+            <li>
+              <a href="https://www.pref.okayama.jp/page/835819.html" target="_blank" rel="noopener"
+                 class="flex items-center gap-2 text-xs text-blue-200 hover:text-white transition-colors">
+                <span>↗</span>
+                <span>救急搬送体制連絡協議会<br><span class="text-blue-400">岡山県ホームページ（消防保安課）</span></span>
+              </a>
+            </li>
+            <li class="pt-1 text-blue-400 text-xs">※その他リンクは順次追加予定</li>
+          </ul>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="bg-navy-dark text-blue-300 mt-10 py-8">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <p class="font-bold text-white text-lg">SOJA.FD 救急情報サイト</p>
+      <p class="text-sm mt-1">総社消防本部 救急担当</p>
+      <p class="text-xs mt-3">最終更新: 2026年3月2日</p>
+    </div>
+  </footer>
+
+</body>
+</html>

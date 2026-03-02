@@ -1,0 +1,18 @@
+# Netlify 設定ファイル - SOJA.FD 救急情報サイト
+
+[build]
+  publish = "."
+
+# セキュリティヘッダー
+[[headers]]
+  for = "/*"
+    [headers.values]
+      X-Frame-Options = "SAMEORIGIN"
+      X-Content-Type-Options = "nosniff"
+      Referrer-Policy = "strict-origin-when-cross-origin"
+
+# 管理画面へのリダイレクト
+[[redirects]]
+  from = "/admin"
+  to = "/admin/index.html"
+  status = 200

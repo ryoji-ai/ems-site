@@ -1,0 +1,134 @@
+backend:
+  name: git-gateway
+  branch: main
+
+media_folder: "files/pdfs"
+public_folder: "/files/pdfs"
+
+# 日本語ロケール
+locale: ja
+
+collections:
+
+  # ──────────────────────────────
+  # お知らせ
+  # ──────────────────────────────
+  - name: "notices"
+    label: "お知らせ"
+    files:
+      - name: "notices"
+        label: "お知らせ一覧"
+        file: "data/notices.json"
+        fields:
+          - label: "お知らせ"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - label: "日付"
+                name: "date"
+                widget: "datetime"
+                format: "YYYY-MM-DD"
+                date_format: "YYYY年MM月DD日"
+                time_format: false
+              - label: "種別"
+                name: "type"
+                widget: "select"
+                options:
+                  - { label: "NEW（新着）", value: "NEW" }
+                  - { label: "重要", value: "重要" }
+                  - { label: "お知らせ", value: "お知らせ" }
+                default: "お知らせ"
+              - label: "タイトル"
+                name: "title"
+                widget: "string"
+              - label: "本文"
+                name: "body"
+                widget: "text"
+
+  # ──────────────────────────────
+  # 会議の進行状況
+  # ──────────────────────────────
+  - name: "meetings"
+    label: "会議の進行状況"
+    files:
+      - name: "meetings"
+        label: "会議一覧"
+        file: "data/meetings.json"
+        fields:
+          - label: "会議"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.name}} ({{fields.status}})"
+            fields:
+              - label: "会議名"
+                name: "name"
+                widget: "string"
+              - label: "開催日"
+                name: "date"
+                widget: "string"
+                default: "未定"
+                hint: "例: 2026年4月1日 / 未定 / 調整中"
+              - label: "場所"
+                name: "place"
+                widget: "string"
+                default: "—"
+              - label: "担当"
+                name: "assigned"
+                widget: "string"
+                default: "指導救命士"
+              - label: "ステータス"
+                name: "status"
+                widget: "select"
+                options:
+                  - { label: "準備中", value: "準備中" }
+                  - { label: "開催予定", value: "開催予定" }
+                  - { label: "審議中", value: "審議中" }
+                  - { label: "開催済", value: "開催済" }
+                default: "準備中"
+              - label: "説明・備考"
+                name: "notes"
+                widget: "text"
+                required: false
+              - label: "資料・議事録（PDF）"
+                name: "document"
+                widget: "file"
+                required: false
+                media_library:
+                  config:
+                    multiple: false
+
+  # ──────────────────────────────
+  # 本部内規
+  # ──────────────────────────────
+  - name: "regulations"
+    label: "本部内規"
+    files:
+      - name: "regulations"
+        label: "内規一覧"
+        file: "data/regulations.json"
+        fields:
+          - label: "内規"
+            name: "items"
+            widget: "list"
+            summary: "{{fields.title}}"
+            fields:
+              - label: "規程名"
+                name: "title"
+                widget: "string"
+              - label: "最終改正"
+                name: "revised"
+                widget: "string"
+                default: "—"
+                hint: "例: 令和7年4月1日"
+              - label: "備考"
+                name: "notes"
+                widget: "string"
+                default: "—"
+              - label: "PDF ファイル"
+                name: "pdf"
+                widget: "file"
+                required: false
+                media_library:
+                  config:
+                    multiple: false

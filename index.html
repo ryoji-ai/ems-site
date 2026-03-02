@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SOJA.FD 救急情報サイト</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: { DEFAULT: '#1e3a5f', dark: '#152b48', light: '#2a4d7c' },
+            fire: { DEFAULT: '#c0392b', dark: '#a93226', light: '#e74c3c' },
+          },
+          fontFamily: { sans: ['Noto Sans JP', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans">
+
+  <!-- ヘッダー -->
+  <header class="bg-navy text-white shadow-lg">
+    <div class="max-w-6xl mx-auto px-4 py-4">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <div class="bg-fire rounded-lg p-2.5 flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C8.5 6 6 9 6 13a6 6 0 0012 0c0-4-2.5-7-6-11zm0 16a4 4 0 01-4-4c0-2.5 1.5-5 4-8 2.5 3 4 5.5 4 8a4 4 0 01-4 4z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-xs text-blue-300 tracking-widest uppercase">Soja Fire Department</p>
+            <h1 class="text-xl font-bold leading-tight">救急情報サイト</h1>
+          </div>
+        </div>
+        <nav class="flex flex-wrap gap-1">
+          <a href="index.html" class="nav-link active">ホーム</a>
+          <a href="regulations.html" class="nav-link">本部内規</a>
+          <a href="https://www.pref.okayama.jp/page/835819.html" target="_blank" rel="noopener" class="nav-link">岡山県プロトコール ↗</a>
+          <a href="meetings.html" class="nav-link">会議の進行状況</a>
+          <a href="https://ryoji-ai.github.io/ems-ojt-system/" target="_blank" rel="noopener" class="nav-link-ojt">
+            救急OJT教育システム ↗
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- ヒーローバナー -->
+  <section class="bg-gradient-to-br from-navy to-navy-dark text-white py-10">
+    <div class="max-w-6xl mx-auto px-4">
+      <h2 class="text-2xl md:text-3xl font-black mb-1">SOJA.FD 救急情報ポータル</h2>
+      <p class="text-blue-300">総社消防本部 救急隊員のための情報共有サイト</p>
+    </div>
+  </section>
+
+  <!-- クイックリンク -->
+  <section class="max-w-6xl mx-auto px-4 -mt-4">
+    <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+      <!-- OJTリンク（目立つ） -->
+      <a href="https://ryoji-ai.github.io/ems-ojt-system/" target="_blank" rel="noopener"
+         class="col-span-2 bg-fire hover:bg-fire-dark text-white rounded-xl p-5 flex items-center gap-4 shadow-lg transition-colors group">
+        <span class="text-4xl">📚</span>
+        <div>
+          <p class="font-bold text-lg leading-tight">救急OJT教育システム</p>
+          <p class="text-red-200 text-sm mt-0.5">クリックしてアクセス →</p>
+        </div>
+      </a>
+      <!-- 本部内規 -->
+      <a href="regulations.html"
+         class="bg-white rounded-xl p-4 flex items-center gap-3 shadow hover:shadow-md transition-shadow border-l-4 border-navy">
+        <span class="text-3xl">📋</span>
+        <div>
+          <p class="font-bold text-navy text-sm">本部内規</p>
+          <p class="text-gray-400 text-xs">内規・規程集</p>
+        </div>
+      </a>
+      <!-- プロトコール -->
+      <a href="https://www.pref.okayama.jp/page/835819.html" target="_blank" rel="noopener"
+         class="bg-white rounded-xl p-4 flex items-center gap-3 shadow hover:shadow-md transition-shadow border-l-4 border-navy">
+        <span class="text-3xl">🏥</span>
+        <div>
+          <p class="font-bold text-navy text-sm">岡山県プロトコール ↗</p>
+          <p class="text-gray-400 text-xs">救急搬送体制連絡協議会</p>
+        </div>
+      </a>
+    </div>
+  </section>
+
+  <!-- メインコンテンツ -->
+  <main class="max-w-6xl mx-auto px-4 py-8">
+    <div class="grid md:grid-cols-3 gap-6">
+
+      <!-- お知らせ -->
+      <section class="md:col-span-2">
+        <h2 class="section-title mb-4">お知らせ</h2>
+        <div id="notices-list" class="space-y-3">
+          <p class="text-gray-400 text-sm py-4 text-center">読み込み中...</p>
+        </div>
+      </section>
+
+      <!-- サイドバー -->
+      <aside class="space-y-4">
+        <!-- 会議状況 -->
+        <div class="bg-white rounded-xl p-5 shadow">
+          <h3 class="section-title mb-3">会議の進行状況</h3>
+          <div id="meetings-sidebar" class="space-y-2">
+            <p class="text-gray-400 text-sm py-2 text-center">読み込み中...</p>
+          </div>
+          <a href="meetings.html" class="block text-center text-navy text-sm mt-4 hover:underline font-medium">詳細を見る →</a>
+        </div>
+        <!-- 担当 -->
+        <div class="bg-navy text-white rounded-xl p-5">
+          <p class="text-xs text-blue-300 uppercase tracking-wider mb-2">担当</p>
+          <p class="font-bold">指導救命士</p>
+          <p class="text-blue-300 text-xs mt-2">サイトに関するご連絡は担当者まで</p>
+        </div>
+      </aside>
+
+    </div>
+  </main>
+
+  <!-- フッター -->
+  <footer class="bg-navy-dark text-blue-300 mt-10 py-8">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <p class="font-bold text-white text-lg">SOJA.FD 救急情報サイト</p>
+      <p class="text-sm mt-1">総社消防本部 救急担当</p>
+      <p class="text-xs mt-3">最終更新: 2026年3月2日</p>
+    </div>
+  </footer>
+
+
+<script>
+// ─── ユーティリティ ───────────────────────────────────────
+function escHtml(s) {
+  return String(s ?? '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+function fmtDate(d) {
+  try {
+    const dt = new Date(d);
+    if (isNaN(dt)) return escHtml(d);
+    return `${dt.getFullYear()}年${dt.getMonth()+1}月${dt.getDate()}日`;
+  } catch { return escHtml(d); }
+}
+const BADGE = { 'NEW':'badge-new', '重要':'badge-important', 'お知らせ':'badge-info' };
+const STATUS = {
+  '準備中':'status-pending','開催予定':'status-scheduled',
+  '審議中':'status-review','開催済':'status-done'
+};
+
+// ─── お知らせ読み込み ─────────────────────────────────────
+async function loadNotices() {
+  try {
+    const res = await fetch('./data/notices.json');
+    const { items } = await res.json();
+    const el = document.getElementById('notices-list');
+    if (!el || !items?.length) return;
+    el.innerHTML = items.map(n => `
+      <article class="notice-card">
+        <span class="${BADGE[n.type] ?? 'badge-info'}">${escHtml(n.type)}</span>
+        <div class="flex-1 min-w-0">
+          <p class="notice-date">${fmtDate(n.date)}</p>
+          <p class="notice-title">${escHtml(n.title)}</p>
+          <p class="notice-body">${escHtml(n.body)}</p>
+        </div>
+      </article>`).join('');
+  } catch {
+    const el = document.getElementById('notices-list');
+    if (el) el.innerHTML = '<p class="text-gray-400 text-sm py-4 text-center">お知らせはありません。</p>';
+  }
+}
+
+// ─── 会議サイドバー読み込み ───────────────────────────────
+async function loadMeetingsSidebar() {
+  try {
+    const res = await fetch('./data/meetings.json');
+    const { items } = await res.json();
+    const el = document.getElementById('meetings-sidebar');
+    if (!el || !items?.length) return;
+    el.innerHTML = items.slice(0, 3).map(m => `
+      <div class="meeting-row">
+        <span class="text-gray-700 text-sm">${escHtml(m.name)}</span>
+        <span class="${STATUS[m.status] ?? 'status-pending'}">${escHtml(m.status)}</span>
+      </div>`).join('');
+  } catch {
+    const el = document.getElementById('meetings-sidebar');
+    if (el) el.innerHTML = '<p class="text-gray-400 text-sm py-2 text-center">—</p>';
+  }
+}
+
+// ─── Netlify Identity リダイレクト ─────────────────────────
+if (window.netlifyIdentity) {
+  window.netlifyIdentity.on('init', user => {
+    if (!user) {
+      window.netlifyIdentity.on('login', () => { document.location.href = '/admin/'; });
+    }
+  });
+}
+
+loadNotices();
+loadMeetingsSidebar();
+</script>
+</body>
+</html>

@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>本部内規 | SOJA.FD 救急情報サイト</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: { DEFAULT: '#1e3a5f', dark: '#152b48', light: '#2a4d7c' },
+            fire: { DEFAULT: '#c0392b', dark: '#a93226', light: '#e74c3c' },
+          },
+          fontFamily: { sans: ['Noto Sans JP', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans">
+
+  <!-- ヘッダー -->
+  <header class="bg-navy text-white shadow-lg">
+    <div class="max-w-6xl mx-auto px-4 py-4">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <div class="bg-fire rounded-lg p-2.5 flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C8.5 6 6 9 6 13a6 6 0 0012 0c0-4-2.5-7-6-11zm0 16a4 4 0 01-4-4c0-2.5 1.5-5 4-8 2.5 3 4 5.5 4 8a4 4 0 01-4 4z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-xs text-blue-300 tracking-widest uppercase">Soja Fire Department</p>
+            <a href="index.html" class="text-xl font-bold leading-tight hover:text-blue-200 transition-colors">救急情報サイト</a>
+          </div>
+        </div>
+        <nav class="flex flex-wrap gap-1">
+          <a href="index.html" class="nav-link">ホーム</a>
+          <a href="regulations.html" class="nav-link active">本部内規</a>
+          <a href="https://www.pref.okayama.jp/page/835819.html" target="_blank" rel="noopener" class="nav-link">岡山県プロトコール ↗</a>
+          <a href="meetings.html" class="nav-link">会議の進行状況</a>
+          <a href="https://ryoji-ai.github.io/ems-ojt-system/" target="_blank" rel="noopener" class="nav-link-ojt">
+            救急OJT教育システム ↗
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- ページタイトル -->
+  <div class="bg-gradient-to-br from-navy to-navy-dark text-white py-8">
+    <div class="max-w-6xl mx-auto px-4">
+      <p class="text-blue-300 text-sm mb-1">SOJA.FD 救急情報サイト</p>
+      <h2 class="text-2xl md:text-3xl font-black">📋 本部内規</h2>
+      <p class="text-blue-300 mt-1">総社消防本部 救急関係内規・規程集</p>
+    </div>
+  </div>
+
+  <!-- メインコンテンツ -->
+  <main class="max-w-6xl mx-auto px-4 py-8">
+
+    <!-- 更新情報 -->
+    <div class="bg-blue-50 border border-blue-200 rounded-xl p-4 mb-6 flex items-start gap-3">
+      <span class="text-blue-500 text-xl mt-0.5">ℹ️</span>
+      <div>
+        <p class="text-blue-800 font-medium text-sm">最終確認日：2026年3月2日</p>
+        <p class="text-blue-600 text-xs mt-0.5">内規の追加・改正は随時更新します。不明な点は指導救命士まで。</p>
+      </div>
+    </div>
+
+    <!-- 内規一覧 -->
+    <section class="bg-white rounded-xl shadow overflow-hidden mb-6">
+      <div class="px-6 py-4 border-b border-gray-100">
+        <h3 class="section-title">救急業務関係規程</h3>
+      </div>
+      <table class="data-table">
+        <thead>
+          <tr>
+            <th class="w-8">No.</th>
+            <th>規程名</th>
+            <th class="hidden md:table-cell">最終改正</th>
+            <th class="hidden md:table-cell">備考</th>
+            <th>資料</th>
+          </tr>
+        </thead>
+        <tbody id="regulations-tbody">
+          <tr><td colspan="5" class="text-center text-gray-400 py-4">読み込み中...</td></tr>
+        </tbody>
+      </table>
+    </section>
+
+    <!-- 注意事項 -->
+    <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-5">
+      <h4 class="font-bold text-yellow-800 mb-2">📌 内規の取り扱いについて</h4>
+      <ul class="text-yellow-700 text-sm space-y-1 list-disc list-inside">
+        <li>本ページに掲載の内規は、本部職員のみ閲覧を想定しています。</li>
+        <li>内規の解釈・適用に関する疑義は、指導救命士または担当係長に確認してください。</li>
+        <li>PDFリンクは順次整備します。掲載のない内規は直接請求してください。</li>
+      </ul>
+    </div>
+
+  </main>
+
+  <!-- フッター -->
+  <footer class="bg-navy-dark text-blue-300 mt-10 py-8">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <p class="font-bold text-white text-lg">SOJA.FD 救急情報サイト</p>
+      <p class="text-sm mt-1">総社消防本部 救急担当</p>
+      <p class="text-xs mt-3">最終更新: 2026年3月2日</p>
+    </div>
+  </footer>
+
+
+<script>
+function escHtml(s) {
+  return String(s ?? '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+(async function() {
+  try {
+    const res = await fetch('./data/regulations.json');
+    const { items } = await res.json();
+    const tbody = document.getElementById('regulations-tbody');
+    if (!tbody || !items?.length) return;
+
+    tbody.innerHTML = items.map((r, i) => {
+      const pdfHtml = r.pdf
+        ? `<a href="${escHtml(r.pdf)}" target="_blank" rel="noopener"
+               class="text-navy text-sm hover:underline">📄 PDF</a>`
+        : `<span class="text-gray-400 text-xs">準備中</span>`;
+      return `
+        <tr>
+          <td class="text-gray-500 text-center font-mono">${i + 1}</td>
+          <td class="font-medium text-gray-800">${escHtml(r.title)}</td>
+          <td class="hidden md:table-cell text-gray-500">${escHtml(r.revised || '—')}</td>
+          <td class="hidden md:table-cell text-gray-400 text-xs">${escHtml(r.notes || '—')}</td>
+          <td>${pdfHtml}</td>
+        </tr>`;
+    }).join('');
+  } catch {
+    const tbody = document.getElementById('regulations-tbody');
+    if (tbody) tbody.innerHTML = '<tr><td colspan="5" class="text-center text-gray-400 py-4">内規情報を読み込めませんでした。</td></tr>';
+  }
+})();
+</script>
+</body>
+</html>
