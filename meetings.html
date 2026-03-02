@@ -116,6 +116,7 @@ const STATUS = {
     const { items } = await res.json();
     const el = document.getElementById('meetings-list');
     if (!el || !items?.length) return;
+    items.reverse();
 
     el.innerHTML = items.map(m => {
       const docHtml = m.document

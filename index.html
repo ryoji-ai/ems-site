@@ -164,6 +164,7 @@ async function loadNotices() {
     const { items } = await res.json();
     const el = document.getElementById('notices-list');
     if (!el || !items?.length) return;
+    items.sort((a, b) => b.date.localeCompare(a.date));
     el.innerHTML = items.map(n => `
       <article class="notice-card">
         <span class="${BADGE[n.type] ?? 'badge-info'}">${escHtml(n.type)}</span>
@@ -186,7 +187,7 @@ async function loadMeetingsSidebar() {
     const { items } = await res.json();
     const el = document.getElementById('meetings-sidebar');
     if (!el || !items?.length) return;
-    el.innerHTML = items.slice(0, 3).map(m => `
+    el.innerHTML = [...items].reverse().slice(0, 3).map(m => `
       <div class="meeting-row">
         <span class="text-gray-700 text-sm">${escHtml(m.name)}</span>
         <span class="${STATUS[m.status] ?? 'status-pending'}">${escHtml(m.status)}</span>
