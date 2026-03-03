@@ -99,36 +99,56 @@ collections:
                     multiple: false
 
   # ──────────────────────────────
-  # 本部内規
+  # 研修資料
   # ──────────────────────────────
-  - name: "regulations"
-    label: "本部内規"
+  - name: "training"
+    label: "研修資料"
     files:
-      - name: "regulations"
-        label: "内規一覧"
-        file: "data/regulations.json"
+      - name: "training"
+        label: "研修資料一覧"
+        file: "data/training.json"
         fields:
-          - label: "内規"
+          - label: "研修資料"
             name: "items"
             widget: "list"
-            summary: "{{fields.title}}"
+            summary: "{{fields.title}} [{{fields.category}}]"
             fields:
-              - label: "規程名"
+              - label: "タイトル"
                 name: "title"
                 widget: "string"
-              - label: "最終改正"
-                name: "revised"
-                widget: "string"
-                default: "—"
-                hint: "例: 令和7年4月1日"
-              - label: "備考"
-                name: "notes"
-                widget: "string"
-                default: "—"
-              - label: "PDF ファイル"
+              - label: "カテゴリ"
+                name: "category"
+                widget: "select"
+                options:
+                  - { label: "特定行為", value: "特定行為" }
+                  - { label: "救急活動", value: "救急活動" }
+                  - { label: "病院実習", value: "病院実習" }
+                  - { label: "教育・研修", value: "教育・研修" }
+                  - { label: "感染対策", value: "感染対策" }
+                  - { label: "資器材操作", value: "資器材操作" }
+                  - { label: "その他", value: "その他" }
+                default: "教育・研修"
+              - label: "説明"
+                name: "description"
+                widget: "text"
+                required: false
+                hint: "資料の概要・対象者などを入力してください"
+              - label: "PDF資料"
                 name: "pdf"
                 widget: "file"
                 required: false
                 media_library:
                   config:
                     multiple: false
+              - label: "YouTube URL"
+                name: "youtube"
+                widget: "string"
+                required: false
+                hint: "例: https://www.youtube.com/watch?v=XXXXXXXXXXX"
+              - label: "登録日"
+                name: "date"
+                widget: "datetime"
+                format: "YYYY-MM-DD"
+                date_format: "YYYY年MM月DD日"
+                time_format: false
+                required: false

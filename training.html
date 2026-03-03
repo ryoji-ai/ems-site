@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>研修資料 | SOJA.FD 救急情報サイト</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="https://identity.netlify.com/v1/netlify-identity-widget.js"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            navy: { DEFAULT: '#1e3a5f', dark: '#152b48', light: '#2a4d7c' },
+            fire: { DEFAULT: '#c0392b', dark: '#a93226', light: '#e74c3c' },
+          },
+          fontFamily: { sans: ['Noto Sans JP', 'sans-serif'] }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="bg-gray-50 min-h-screen font-sans">
+
+  <!-- ヘッダー -->
+  <header class="bg-navy text-white shadow-lg">
+    <div class="max-w-6xl mx-auto px-4 py-4">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-3">
+        <div class="flex items-center gap-3">
+          <div class="bg-fire rounded-lg p-2.5 flex-shrink-0">
+            <svg xmlns="http://www.w3.org/2000/svg" class="w-7 h-7 text-white" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C8.5 6 6 9 6 13a6 6 0 0012 0c0-4-2.5-7-6-11zm0 16a4 4 0 01-4-4c0-2.5 1.5-5 4-8 2.5 3 4 5.5 4 8a4 4 0 01-4 4z"/>
+            </svg>
+          </div>
+          <div>
+            <p class="text-xs text-blue-300 tracking-widest uppercase">Soja Fire Department</p>
+            <a href="index.html" class="text-xl font-bold leading-tight hover:text-blue-200 transition-colors">救急情報サイト</a>
+          </div>
+        </div>
+        <nav class="flex flex-wrap gap-1">
+          <a href="index.html" class="nav-link">ホーム</a>
+          <a href="training.html" class="nav-link active">研修資料</a>
+          <a href="https://www.pref.okayama.jp/page/835819.html" target="_blank" rel="noopener" class="nav-link">岡山県プロトコール ↗</a>
+          <a href="meetings.html" class="nav-link">会議の進行状況</a>
+          <a href="https://ryoji-ai.github.io/ems-ojt-system/" target="_blank" rel="noopener" class="nav-link-ojt">
+            救急OJT教育システム ↗
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- ページタイトル -->
+  <div class="bg-gradient-to-br from-navy to-navy-dark text-white py-8">
+    <div class="max-w-6xl mx-auto px-4">
+      <p class="text-blue-300 text-sm mb-1">SOJA.FD 救急情報サイト</p>
+      <h2 class="text-2xl md:text-3xl font-black">📚 研修資料</h2>
+      <p class="text-blue-300 mt-1">PDF資料・YouTube動画による研修コンテンツ</p>
+    </div>
+  </div>
+
+  <!-- メインコンテンツ -->
+  <main class="max-w-6xl mx-auto px-4 py-8">
+
+    <!-- カテゴリフィルター -->
+    <div class="flex flex-wrap gap-2 mb-6" id="filter-area">
+      <button data-cat="all" onclick="filterCategory('all')"
+        class="filter-btn px-3 py-1.5 rounded-full text-sm font-medium border transition-colors bg-navy text-white border-navy">
+        すべて
+      </button>
+      <button data-cat="特定行為" onclick="filterCategory('特定行為')"
+        class="filter-btn px-3 py-1.5 rounded-full text-sm font-medium border border-blue-300 text-blue-700 hover:bg-blue-50 transition-colors">
+        特定行為
+      </button>
+      <button data-cat="救急活動" onclick="filterCategory('救急活動')"
+        class="filter-btn px-3 py-1.5 rounded-full text-sm font-medium border border-green-300 text-green-700 hover:bg-green-50 transition-colors">
+        救急活動
+      </button>
+      <button data-cat="病院実習" onclick="filterCategory('病院実習')"
+        class="filter-btn px-3 py-1.5 rounded-full text-sm font-medium border border-purple-300 text-purple-700 hover:bg-purple-50 transition-colors">
+        病院実習
+      </button>
+      <button data-cat="教育・研修" onclick="filterCategory('教育・研修')"
+        class="filter-btn px-3 py-1.5 rounded-full text-sm font-medium border border-orange-300 text-orange-700 hover:bg-orange-50 transition-colors">
+        教育・研修
+      </button>
+      <button data-cat="感染対策" onclick="filterCategory('感染対策')"
+        class="filter-btn px-3 py-1.5 rounded-full text-sm font-medium border border-red-300 text-red-700 hover:bg-red-50 transition-colors">
+        感染対策
+      </button>
+      <button data-cat="資器材操作" onclick="filterCategory('資器材操作')"
+        class="filter-btn px-3 py-1.5 rounded-full text-sm font-medium border border-yellow-300 text-yellow-700 hover:bg-yellow-50 transition-colors">
+        資器材操作
+      </button>
+    </div>
+
+    <!-- 資料カード一覧 -->
+    <div id="training-grid" class="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+      <p class="col-span-full text-center text-gray-400 py-12">読み込み中...</p>
+    </div>
+
+  </main>
+
+  <!-- フッター -->
+  <footer class="bg-navy-dark text-blue-300 mt-10 py-8">
+    <div class="max-w-6xl mx-auto px-4 text-center">
+      <p class="font-bold text-white text-lg">SOJA.FD 救急情報サイト</p>
+      <p class="text-sm mt-1">総社消防本部 救急担当</p>
+      <p class="text-xs mt-3">最終更新: 2026年3月4日</p>
+    </div>
+  </footer>
+
+<script>
+function escHtml(s) {
+  return String(s ?? '')
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+}
+
+const CATEGORY_COLORS = {
+  '特定行為':  'bg-blue-100 text-blue-800',
+  '救急活動':  'bg-green-100 text-green-800',
+  '病院実習':  'bg-purple-100 text-purple-800',
+  '教育・研修':'bg-orange-100 text-orange-800',
+  '感染対策':  'bg-red-100 text-red-800',
+  '資器材操作':'bg-yellow-100 text-yellow-800',
+};
+
+function getYouTubeId(url) {
+  if (!url) return null;
+  const m = url.match(/(?:v=|youtu\.be\/)([A-Za-z0-9_-]{11})/);
+  return m ? m[1] : null;
+}
+
+let allItems = [];
+
+function renderCards(items) {
+  const grid = document.getElementById('training-grid');
+  if (!items?.length) {
+    grid.innerHTML = '<p class="col-span-full text-center text-gray-400 py-12">このカテゴリの資料はまだ登録されていません。</p>';
+    return;
+  }
+
+  grid.innerHTML = items.map(item => {
+    const catColor = CATEGORY_COLORS[item.category] || 'bg-gray-100 text-gray-700';
+    const ytId = getYouTubeId(item.youtube);
+    const dateStr = item.date
+      ? (() => { try { return new Date(item.date).toLocaleDateString('ja-JP', { year: 'numeric', month: 'long', day: 'numeric' }); } catch { return ''; } })()
+      : '';
+
+    const thumbnailHtml = ytId
+      ? `<a href="${escHtml(item.youtube)}" target="_blank" rel="noopener"
+            class="block relative rounded-t-xl overflow-hidden group">
+           <img src="https://img.youtube.com/vi/${escHtml(ytId)}/mqdefault.jpg"
+                alt="動画サムネイル" class="w-full object-cover" loading="lazy">
+           <div class="absolute inset-0 bg-black bg-opacity-40 flex items-center justify-center
+                        group-hover:bg-opacity-20 transition-all">
+             <span class="text-white text-5xl drop-shadow-lg">▶</span>
+           </div>
+         </a>`
+      : '';
+
+    const pdfBtn = item.pdf
+      ? `<a href="${escHtml(item.pdf)}" target="_blank" rel="noopener"
+            class="inline-flex items-center gap-1.5 text-sm px-3 py-1.5 bg-navy text-white
+                   rounded-lg hover:bg-navy-dark transition-colors font-medium">
+           📄 PDF資料
+         </a>`
+      : '';
+
+    const ytBtn = item.youtube
+      ? `<a href="${escHtml(item.youtube)}" target="_blank" rel="noopener"
+            class="inline-flex items-center gap-1.5 text-sm px-3 py-1.5 bg-red-600 text-white
+                   rounded-lg hover:bg-red-700 transition-colors font-medium">
+           ▶ 動画を見る
+         </a>`
+      : '';
+
+    const noContent = !item.pdf && !item.youtube
+      ? '<span class="text-gray-400 text-xs">準備中</span>'
+      : '';
+
+    return `
+      <div class="bg-white rounded-xl shadow hover:shadow-md transition-shadow overflow-hidden flex flex-col">
+        ${thumbnailHtml}
+        <div class="p-4 flex-1 flex flex-col">
+          <div class="flex items-center justify-between gap-2 mb-2">
+            <span class="inline-block text-xs px-2.5 py-0.5 rounded-full font-medium ${catColor}">
+              ${escHtml(item.category || 'その他')}
+            </span>
+            ${dateStr ? `<span class="text-xs text-gray-400 flex-shrink-0">${escHtml(dateStr)}</span>` : ''}
+          </div>
+          <h3 class="font-bold text-gray-800 leading-snug mb-2">${escHtml(item.title)}</h3>
+          ${item.description
+            ? `<p class="text-gray-500 text-sm leading-relaxed flex-1 mb-3">${escHtml(item.description)}</p>`
+            : '<div class="flex-1"></div>'}
+          <div class="flex flex-wrap gap-2 pt-2 border-t border-gray-50">
+            ${pdfBtn}${ytBtn}${noContent}
+          </div>
+        </div>
+      </div>`;
+  }).join('');
+}
+
+function filterCategory(cat) {
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    const active = btn.dataset.cat === cat;
+    btn.classList.toggle('bg-navy', active);
+    btn.classList.toggle('text-white', active);
+    btn.classList.toggle('border-navy', active);
+  });
+  const filtered = cat === 'all' ? allItems : allItems.filter(item => item.category === cat);
+  renderCards(filtered);
+}
+
+(async function () {
+  try {
+    const res = await fetch('./data/training.json');
+    const { items } = await res.json();
+    allItems = items || [];
+    renderCards(allItems);
+  } catch {
+    renderCards([]);
+  }
+})();
+</script>
+</body>
+</html>
